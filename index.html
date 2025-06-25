@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本の生産性を解放する：構造改革こそ、経済成長と男女格差是正の鍵</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&amp;family=Noto+Sans+JP:wght@400;700;900&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .html-diagram-box {
+            border: 2px solid #41C9E2;
+            background-color: #F0F9FF;
+        }
+    </style>
+</head>
+<body class="bg-[#ACE2E1] text-[#001F3F]">
+    <header class="bg-[#004AAD] text-white py-8 text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-2 tracking-tight">日本の生産性を解放する</h1>
+            <p class="text-lg md:text-2xl font-bold text-[#ACE2E1]">構造改革こそ、経済成長と男女格差是正の鍵</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-4">1. 問題提起：なぜ日本の生産性は上がらないのか？</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12 text-lg">長引く経済停滞の裏で、日本の生産性は先進国の中で低い水準にあります。様々な要因の中で、特に大きな影響を与えているのが「女性の生産性の低さ」です。これは、見過ごされてきた構造的な問題の現れです。</p>
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold mb-4 text-[#004AAD] text-center">労働生産性の国際比較 (2022年)</h3>
+                <p class="text-sm mb-4 text-gray-600 text-center">日本の時間当たり労働生産性はOECD加盟38カ国中30位。G7の中では最下位が続いています。</p>
+                <div class="text-center">
+                    <div class="text-6xl font-black text-[#004AAD]">30位 / 38カ国</div>
+                    <p class="text-xl font-bold text-gray-700 mt-2">(G7中最下位)</p>
+                </div>
+                <p class="text-center mt-6 text-gray-800 font-semibold">この停滞の約半分は、女性の労働生産性が十分に引き出されていないことに起因すると指摘されています。</p>
+                <p class="text-xs text-gray-500 text-right mt-2">出典：日本生産性本部「労働生産性の国際比較」</p>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-4">2. 現象：なぜ女性は低賃金職に偏るのか？</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12 text-lg">女性の生産性が低いのは、能力が劣るからではありません。キャリアの中断や非正規雇用の選択などにより、結果として年収が高くない職に多く就いていることが、統計データから明らかになっています。</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[#004AAD]">男女間賃金格差：国際比較</h3>
+                    <p class="text-sm mb-4 text-gray-600">日本の格差は21.3%とOECD平均を大きく上回り、先進国で最悪レベルです。</p>
+                    <div class="chart-container">
+                        <canvas id="wageGapChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-500 text-right mt-2">出典：OECD (2022)</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[#004AAD]">停滞するキャリア</h3>
+                    <p class="text-sm mb-4 text-gray-600">女性の賃金カーブは30代で頭打ちになる傾向があり、長期的なキャリア形成が困難であることを示唆しています。</p>
+                    <div class="chart-container h-80">
+                        <canvas id="wageCurveChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-500 text-right mt-2">出典：厚生労働省「令和４年賃金構造基本統計調査」より算出</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[#004AAD]">管理職への遠い道：国際比較</h3>
+                    <p class="text-sm mb-4 text-gray-600">意思決定層である管理職の女性比率は、他国に比べ著しく低いのが現状です。</p>
+                    <div class="chart-container">
+                        <canvas id="managerRatioChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-500 text-right mt-2">出典：ILOSTAT, OECD (2022)</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6">
+                    <h3 class="text-xl font-bold mb-2 text-[#004AAD]">高付加価値分野への進路：国際比較</h3>
+                    <p class="text-sm mb-4 text-gray-600">STEM分野における女性比率は、OECD平均と比べても低く、選択肢の偏りが見られます。</p>
+                    <div class="chart-container">
+                        <canvas id="stemGapChart"></canvas>
+                    </div>
+                    <p class="text-xs text-gray-500 text-right mt-2">出典：OECD "Education at a Glance" (2023)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-4">3. 真因の再定義：問題の切り分けと正しい処方箋</h2>
+            <p class="max-w-4xl mx-auto text-center mb-12 text-lg">格差を生む原因は一つではありません。教育現場の課題と、ビジネス現場の課題を明確に区別し、それぞれの真因に合った解決策を考える必要があります。</p>
+            <div class="bg-white rounded-lg shadow-2xl p-8">
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="flex">
+                        <div class="bg-blue-50 p-6 rounded-lg w-full">
+                            <h3 class="text-xl font-bold mb-4 text-center text-[#004AAD]">原因① 教育段階での進路選択バイアス</h3>
+                            <p class="text-center text-3xl mb-2">🎓</p>
+                            <p class="text-sm">「女性は理系に向かない」といった社会的・文化的バイアスの影響で、女子生徒が高等教育の段階で高生産性分野へのレールから外れてしまう問題。これは実際に存在し、環境要因を取り除く教育現場への働きかけが重要です。&lt;/p&gt;</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="bg-blue-50 p-6 rounded-lg w-full">
+                            <h3 class="text-xl font-bold mb-4 text-center text-[#004AAD]">原因② ビジネス現場の構造的問題</h3>
+                            <p class="text-center text-3xl mb-2">🏢</p>
+                            <p class="text-sm">しばしば「男性が作った仕組みだから、男性有利な構造になっている」と結論付けられますが、これは真因を見誤っています。問題の本質は、ジェンダーバイアスではなく、下記の因果関係にあります。&lt;/p&gt;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-8 border-t-2 border-dashed border-[#41C9E2]">
+                    <h3 class="text-xl font-bold text-center mb-6 text-[#004AAD]">ビジネス現場の構造：真因の特定</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-4 text-center">
+                        <div class="md:col-span-2 bg-blue-50 p-4 rounded-lg">
+                            <p class="font-bold text-lg">起源：産業構造</p>
+                            <p class="text-2xl my-2">🏭</p>
+                            <p>長時間労働＝成果<br>だった製造業の論理</p>
+                        </div>
+                        <div class="text-3xl font-bold text-[#008DDA] transform rotate-90 md:rotate-0">→</div>
+                        <div class="md:col-span-2 bg-blue-50 p-4 rounded-lg">
+                            <p class="font-bold text-lg">結果：雇用システム</p>
+                            <p class="text-2xl my-2">⚙️</p>
+                            <p>メンバーシップ型雇用<br>（時間で評価）</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t-2 border-red-400">
+                    <p class="text-center font-bold text-red-600 text-lg">⚠️ 真因の誤解が招く、誤った処方箋</p>
+                    <p class="text-sm text-center my-4 text-gray-800">もしこの構造問題を「ジェンダーバイアス」の問題だと誤診し、<span class="font-bold">メンバーシップ型を維持したまま</span>男性の育休取得などを推進すると…</p>
+                    <p class="text-center text-xl font-bold text-red-700">「男性の労働時間が女性に移り、経済が衰退する形で格差が是正される」という最悪のシナリオに陥りかねません。</p>
+                </div>
+
+                <div class="mt-8 pt-6 border-t-2 border-green-400">
+                    <p class="text-center font-bold text-green-700 text-lg">✅ 市場原理に基づく、正しい処方箋</p>
+                    <p class="text-sm text-center my-4 text-gray-800">真の解決策は、市場原理を尊重し、持続可能なサイクルを創り出すことです。</p>
+                    <p class="text-center text-xl font-bold text-green-800">「企業の評価制度改革 → 透明化 → 労働者の自由な選択 → 健全な市場競争」という好循環こそが、真の格差是正に繋がります。</p>
+                </div>
+
+            </div>
+            <div class="mt-12">
+                <h4 class="font-bold text-center mb-4 text-gray-500 text-sm">補足：問題の切り分けの重要性</h4>
+                <div class="text-xs text-gray-600 bg-gray-100 p-3 rounded-lg max-w-2xl mx-auto">
+                    <p>ビジネス現場以外では、下記のようなジェンダーバイアスによる影響が指摘されることもあります。<br>・<strong>安全基準</strong>: 衝突テスト用ダミー人形が男性基準。<br>・<strong>医療</strong>: 臨床試験が主に男性対象。<br>・<strong>職場環境</strong>: オフィスの空調が男性基準。<br>たしかにこれらが残っている分野は是正されるべきですが、これらもまた「現状維持バイアス」などが絡み合っており、単純な意識改革ではなく「仕組み」での解決が重要です。すべての問題を「ジェンダーバイアス」で片付けることは、正しい解決策を見失わせます。&lt;/p&gt;</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-4">4. なぜ「女性活躍」が日本の最適解なのか？</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12 text-lg">前章で見たように、日本経済のOSを「時間評価」から「成果評価」へとアップデートする必要があります。この構造改革を進める上で、国内に眠る最大のポテンシャルである「女性の活躍」こそが、最も合理的で効果的な成長戦略となります。&lt;/p&gt;</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <p class="text-5xl mb-3">🆘</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#004AAD]">福祉の持続可能性</h3>
+                    <p class="text-sm text-gray-600">社会保障制度を維持するためには、労働人口と納税者を増やす必要があります。&lt;/p&gt;</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <p class="text-5xl mb-3">📉</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#004AAD]">人口減少への対応</h3>
+                    <p class="text-sm text-gray-600">労働力不足は深刻化しており、国内の未活用労働力を最大限に活用することが急務です。&lt;/p&gt;</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-xl p-6 text-center">
+                    <p class="text-5xl mb-3">🛂</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#004AAD]">移民政策の現実的制約</h3>
+                    <p class="text-sm text-gray-600">大規模な移民受け入れには社会的な合意形成が必要であり、即効性のある解決策とはなりにくいのが現状です。&lt;/p&gt;</p>
+                </div>
+            </div>
+            <p class="text-center text-2xl font-bold mt-12 text-[#004AAD]">👉 これら全ての制約を乗り越える鍵が、<span class="border-b-4 border-[#41C9E2]">女性の完全な労働参加</span>にあります。&lt;/p&gt;</p>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-4">5. 改革の優先順位と設計図&lt;/h2&gt;</p>
+            <p class="max-w-3xl mx-auto text-center mb-12 text-lg">重要なのは、個人の意識に訴えることではなく、行動を変える「仕組み」と「インフラ」を構築することです。改革は以下の二本柱で進めるべきです。&lt;/p&gt;</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="bg-white rounded-xl shadow-2xl p-8">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#004AAD]">【第1の柱】基盤となる経済システムのOSアップデート&lt;/h3&gt;</p>
+                    <div class="space-y-5">
+                        <div>
+                            <h4 class="font-bold text-lg">① 成果主義（ジョブ型）への移行&lt;/h4&gt;</p>
+                            <p class="text-sm text-gray-600">時間ではなく、創出した価値で評価するシステムへ。企業の自主転換を国が後押し。&lt;/p&gt;</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">② 日本版フレキシキュリティの構築&lt;/h4&gt;</p>
+                            <p class="text-sm text-gray-600">「柔軟な労働市場」と「手厚いセーフティネット」を両立させる。明確な解雇ルール、十分な失業給付、質の高いリスキリング支援を一体で提供。&lt;/p&gt;</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">③ 努力を罰しない税・社会保障&lt;/h4&gt;</p>
+                            <p class="text-sm text-gray-600">配偶者控除のような就労意欲を削ぐ制度を廃止し、個人の労働選択に中立な制度へ。&lt;/p&gt;</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">④ バイアスを排除する組織設計&lt;/h4&gt;</p>
+                            <p class="text-sm text-gray-600">「意識改革」に頼るのではなく、構造化面接やブラインド選考など、無意識の偏見が入り込む余地のない「仕組み」を組織に導入する。&lt;/p&gt;</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">⑤ 「行動変容」を促す透明化&lt;/h4&gt;</p>
+                            <p class="text-sm text-gray-600">現在、従業員301人以上の企業に義務付けられている男女間賃金格差の開示を、段階的に中堅・中小企業へも拡大。さらに、公表されたデータが就職・転職サイト等で横断的に比較可能になるよう、民間サービスとの連携を促し、市場の透明性を高める。&lt;/p&gt;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-2xl p-8">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#004AAD]">【第2の柱】経済インフラとしてのケア労働への投資&lt;/h3&gt;</p>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="font-bold text-lg">「市場の失敗」の是正&lt;/h4&gt;</p>
+                            <p class="text-sm text-gray-600">育児や介護は社会に不可欠な労働であるにも関わらず、市場で正当に評価されていない「市場の失敗」が起きている。&lt;/p&gt;</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">コストではなく戦略的投資&lt;/h4&gt;</p>
+                            <p class="text-sm text-gray-600">保育・介護インフラの拡充と担い手の待遇改善は、単なる福祉ではない。労働供給のボトルネックを解消し、経済を回すための必須インフラ投資である。&lt;/p&gt;</p>
+                        </div>
+                        <div class="mt-6 p-4 bg-blue-50 rounded-lg text-center">
+                            <p class="font-semibold text-[#004AAD]">この投資が女性の労働参加を促進し、税収増と生産性向上をもたらす。&lt;/p&gt;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center py-12">
+            <h2 class="text-4xl font-extrabold text-[#004AAD] mb-4">生産性向上と格差是正は、同じ道の上にある&lt;/h2&gt;</p>
+            <p class="text-xl max-w-3xl mx-auto">男女間賃金格差の是正は、社会正義の問題に留まりません。&lt;br&gt;それは、経済合理性を追求した結果として達成される、日本の最も効果的な&lt;span class="font-bold"&gt;成長戦略&lt;/span&gt;なのです。&lt;/p&gt;</p>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#004AAD] text-white text-center py-4 mt-8">
+        <p class="text-sm">&copy; 2025 Japan Productivity &amp; Equity Initiative. All rights reserved.&lt;/p&gt;</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const FONT_COLOR = '#001F3F';
+            const BORDER_COLOR = '#E5E7EB';
+            const PRIMARY_COLOR = '#004AAD';
+            const SECONDARY_COLOR = '#008DDA';
+            const TERTIARY_COLOR = '#41C9E2';
+            const ACCENT_COLOR = '#ACE2E1';
+
+            Chart.register(ChartDataLabels);
+
+            Chart.defaults.font.family = "'Inter', 'Noto Sans JP', sans-serif";
+            Chart.defaults.color = FONT_COLOR;
+            Chart.defaults.borderColor = BORDER_COLOR;
+            Chart.defaults.plugins.datalabels.font = {
+                weight: 'bold',
+                size: 12
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                }
+                return label;
+            };
+
+            const sharedTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        backgroundColor: 'rgba(0, 31, 63, 0.9)',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyFont: { size: 12 },
+                        padding: 10,
+                        cornerRadius: 4,
+                        displayColors: true,
+                        borderColor: TERTIARY_COLOR,
+                        borderWidth: 1
+                    },
+                    legend: {
+                        labels: {
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            };
+
+            const wageGapCtx = document.getElementById('wageGapChart');
+            if(wageGapCtx) {
+                new Chart(wageGapCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['日本', 'アメリカ', 'イギリス', 'OECD平均', 'スウェーデン'],
+                        datasets: [{
+                            label: '男女間賃金格差 (%)',
+                            data: [21.3, 17.0, 14.5, 11.9, 7.3],
+                            backgroundColor: [PRIMARY_COLOR, SECONDARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, TERTIARY_COLOR],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...sharedTooltipOptions,
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            ...sharedTooltipOptions.plugins,
+                            legend: { display: false },
+                            datalabels: {
+                                anchor: 'end',
+                                align: 'end',
+                                formatter: (value) => value + '%',
+                                color: FONT_COLOR,
+                                offset: 8
+                            }
+                        }
+                    }
+                });
+            }
+
+            const managerRatioCtx = document.getElementById('managerRatioChart');
+            if(managerRatioCtx) {
+                new Chart(managerRatioCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['スウェーデン', 'アメリカ', 'OECD平均', '日本'],
+                        datasets: [{
+                            label: '管理職に占める女性比率 (%)',
+                            data: [41.7, 41.0, 34.5, 12.9],
+                            backgroundColor: [TERTIARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, PRIMARY_COLOR],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...sharedTooltipOptions,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            ...sharedTooltipOptions.plugins,
+                            legend: { display: false },
+                            datalabels: {
+                                anchor: 'center',
+                                align: 'center',
+                                color: (context) => context.dataset.backgroundColor[context.dataIndex] === ACCENT_COLOR ? FONT_COLOR : 'white',
+                                formatter: (value) => value + '%'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: '比率 (%)' },
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        if (Math.floor(value) === value) {
+                                            return value + '%';
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const wageCurveCtx = document.getElementById('wageCurveChart');
+            if (wageCurveCtx) {
+                new Chart(wageCurveCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['20-24歳', '25-29歳', '30-34歳', '35-39歳', '40-44歳', '45-49歳', '50-54歳'],
+                        datasets: [
+                            {
+                                label: '男性',
+                                data: [277.2, 337.2, 393.6, 444.0, 476.4, 505.2, 525.6],
+                                borderColor: PRIMARY_COLOR,
+                                tension: 0.3,
+                            },
+                            {
+                                label: '女性',
+                                data: [264.0, 304.8, 322.8, 334.8, 349.2, 357.6, 356.4],
+                                borderColor: TERTIARY_COLOR,
+                                tension: 0.3,
+                            }
+                        ]
+                    },
+                    options: {
+                        ...sharedTooltipOptions,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: false, title: { display: true, text: '年収 (万円)' } } },
+                        plugins: {
+                            ...sharedTooltipOptions.plugins,
+                            legend: { position: 'top' },
+                            datalabels: {
+                                align: 'top',
+                                backgroundColor: (context) => context.dataset.borderColor,
+                                borderRadius: 4,
+                                color: 'white',
+                                font: { size: 10 },
+                                padding: 4,
+                                formatter: (value) => Math.round(value)
+                            }
+                        }
+                    }
+                });
+            }
+
+            const stemGapCtx = document.getElementById('stemGapChart');
+            if (stemGapCtx) {
+                new Chart(stemGapCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['英国', 'OECD平均', 'ドイツ', '日本'],
+                        datasets: [{
+                            label: 'STEM分野の女子学生比率 (%)',
+                            data: [28, 26, 22, 16],
+                            backgroundColor: [TERTIARY_COLOR, ACCENT_COLOR, SECONDARY_COLOR, PRIMARY_COLOR],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        ...sharedTooltipOptions,
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            ...sharedTooltipOptions.plugins,
+                            legend: { display: false },
+                            datalabels: {
+                                anchor: 'center',
+                                align: 'center',
+                                color: (context) => context.dataset.backgroundColor[context.dataIndex] === ACCENT_COLOR ? FONT_COLOR : 'white',
+                                formatter: (value) => value + '%'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: { display: true, text: '比率 (%)' },
+                                ticks: {
+                                    callback: function(value) {
+                                        return value + '%'
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
